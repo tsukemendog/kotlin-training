@@ -1,12 +1,14 @@
 package training.chapter1
 
+import training.chapter2.lastChar2 as last  //as 를 사용해서 다른 이름으로 불러오는 것도 가능
+
 
 fun main(args: Array<String>) {
     val s: String = ""
     println("max " + max(5,4))
     println("min " + min(5,4))
     println("min1 " + min1(5,4))
-
+    println("lastChar : " + "w".last())
     val question = "테스트1" //변수 선언시 타입을 지정하지 않으면 코틀린 컴파일러가
                             //자동으로 초기화 식을 분석해서 타입을 지정해준다.
     val answer = 42;
