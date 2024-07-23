@@ -27,7 +27,46 @@ class User3 constructor(_nickname: String) {  // constructor 키워드는 주생
 // 위 세가지 방식은 다 같지만 결국 User1 방식이 제일 간단명료하고 좋다.
 
 //함수 파라미터와 마찬가지로 생성자 파라미터에도 디폴트 값을 정의할 수 있다.
-class User4(val nickname : String, val isSubscribed: Boolean = true)
+open class User4(val nickname : String, val isSubscribed: Boolean = true)
+
+class ChildUser(nickname : String, isSubscribed: Boolean = true) : User4(nickname, isSubscribed)
+
+
+class Secrettive private constructor() {}  // private 변경자를 통해 외부에서 인스턴스화 하지 못하게 막는다
+
+
+open class SubConstruct {
+
+    constructor(name: String) {  //부생성자는 클래스 본문안에 constuctor 키워드를 사용하여 정의한다
+
+    }
+
+    constructor(name: String, age: Int) {
+
+    }
+}
+
+class SubConstructChild : SubConstruct {
+    constructor(name: String) : super(name){  //상위 클래스의 생성자를 호출한다.
+        println(name)
+    }
+    
+    constructor(name: String, age: Int) : super(name, age) {
+        
+    }
+}
+
+//클래스에 주생성자가 없으면 반드시 부생성자를 통해 상위클래스를 초기화하거나 다른 생성자에게 생성을 위임해야 한다.
+class SubConstructChild2 : SubConstruct {
+    constructor(name: String) : this(name, 23){  //this 를 통해 다른 생성자에게 생성을 위임 할수도 있다.
+
+    }
+
+    constructor(name: String, age: Int) : super(name, age) {
+
+    }
+}
+
 
 fun main() {
     val moonsu = User4("moonsu")  //new 키워드 없이 그냥 생성자를 직접 호출하면 된다.
